@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Toggl.Ultrawave.Serialization;
-using Xunit;
 
 namespace Toggl.Ultrawave.Tests
 {
@@ -8,25 +7,19 @@ namespace Toggl.Ultrawave.Tests
     {
         private readonly JsonSerializer serializer = new JsonSerializer();
 
-        protected abstract string ValidJson { get; }
-
-        protected abstract T ValidObject { get; }
-
-        [Fact]
-        public void CanBeDeserialized()
+        protected void CanBeDeserialized(string validJson, T validObject)
         {
-            var actual = serializer.Deserialize<T>(ValidJson);
+            var actual = serializer.Deserialize<T>(validJson);
 
             actual.Should().NotBeNull();
-            actual.ShouldBeEquivalentTo(ValidObject);
+            actual.ShouldBeEquivalentTo(validObject);
         }
 
-        [Fact]
-        public void CanBeSerialized()
+        protected void CanBeSerialized(string validJson, T validObject)
         {
-            var actualJson = serializer.Serialize(ValidObject);
+            var actualJson = serializer.Serialize(validObject);
 
-            actualJson.Should().Be(ValidJson);
+            actualJson.Should().Be(validJson);
         }
     }
 }
