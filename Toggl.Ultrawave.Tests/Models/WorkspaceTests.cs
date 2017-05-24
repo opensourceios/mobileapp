@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Toggl.Ultrawave.Tests.Models
@@ -62,20 +63,34 @@ namespace Toggl.Ultrawave.Tests.Models
                 LogoUrl = "https://assets.toggl.com/images/workspace.jpg"
             };
 
-            [Fact]
-            public void CanBeSerialized()
+            [Theory]
+            [MemberData("SerializationCases")]
+            public void CanBeSerialized(string validJson, Workspace validObject)
             {
-                SerializationHelper.CanBeSerialized(completeJson, completeObject);
-                SerializationHelper.CanBeSerialized(jsonWithNulls, objectWithNulls);
+                SerializationHelper.CanBeSerialized(validJson, validObject);
+            }
+            
+            [Theory]
+            [MemberData("DeserializationCases")]
+            public void CanBeDeserialized(string validJson, Workspace validObject)
+            {
+                SerializationHelper.CanBeDeserialized(validJson, validObject);
             }
 
-            [Fact]
-            public void CanBeDeserialized()
-            {
-                SerializationHelper.CanBeDeserialized(completeJson, completeObject);
-                SerializationHelper.CanBeDeserialized(jsonWithNulls, objectWithNulls);
-                SerializationHelper.CanBeDeserialized(jsonWithoutSomeFields, objectWithNulls);
-            }
+            public static IEnumerable<object[]> SerializationCases
+                => new[]
+                {
+                    new object[] { completeJson, completeObject },
+                    new object[] { jsonWithNulls, objectWithNulls }
+                };
+
+            public static IEnumerable<object[]> DeserializationCases
+                => new[]
+                {
+                    new object[] { completeJson, completeObject },
+                    new object[] { jsonWithNulls, objectWithNulls },
+                    new object[] { jsonWithoutSomeFields, objectWithNulls }
+                };
         }
     }
 }
