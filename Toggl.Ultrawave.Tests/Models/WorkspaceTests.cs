@@ -61,14 +61,14 @@ namespace Toggl.Ultrawave.Tests.Models
             };
 
             [Fact]
-            public void TestCanBeSerialized()
+            public void CanBeSerialized()
             {
                 SerializationHelper.CanBeSerialized(completeJson, completeObject);
                 SerializationHelper.CanBeSerialized(jsonWithNulls, objectWithNulls);
             }
 
             [Fact]
-            public void TestCanBeDeserialized()
+            public void CanBeDeserialized()
             {
                 SerializationHelper.CanBeDeserialized(completeJson, completeObject);
                 SerializationHelper.CanBeDeserialized(jsonWithNulls, objectWithNulls);
