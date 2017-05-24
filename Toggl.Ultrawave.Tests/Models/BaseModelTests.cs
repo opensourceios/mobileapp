@@ -1,25 +1,23 @@
-﻿using FluentAssertions;
-using Toggl.Ultrawave.Serialization;
+using Xunit;
 
 namespace Toggl.Ultrawave.Tests
 {
     public abstract class BaseModelTests<T>
     {
-        private readonly JsonSerializer serializer = new JsonSerializer();
+        protected abstract string ValidJson { get; }
 
-        protected void CanBeDeserialized(string validJson, T validObject)
+        protected abstract T ValidObject { get; }
+
+        [Fact]
+        public void CanBeSerialized()
         {
-            var actual = serializer.Deserialize<T>(validJson);
-
-            actual.Should().NotBeNull();
-            actual.ShouldBeEquivalentTo(validObject);
+            SerializationHelper.CanBeSerialized(ValidJson, ValidObject);
         }
 
-        protected void CanBeSerialized(string validJson, T validObject)
+        [Fact]
+        public void TestCanBeDeserialized()
         {
-            var actualJson = serializer.Serialize(validObject);
-
-            actualJson.Should().Be(validJson);
+            SerializationHelper.CanBeDeserialized(ValidJson, ValidObject);
         }
     }
 }
