@@ -9,15 +9,15 @@ namespace Toggl.Ultrawave.Tests
         protected abstract T ValidObject { get; }
 
         [Fact]
-        public void CanBeSerialized()
+        public void CanBeDeserialized()
         {
-            SerializationHelper.CanBeSerialized(ValidJson, ValidObject);
+            SerializationHelper.CanBeDeserialized(ValidJson, ValidObject);
         }
 
         [Fact]
-        public void TestCanBeDeserialized()
+        public void CanBeSerialized()
         {
-            SerializationHelper.CanBeDeserialized(ValidJson, ValidObject);
+            SerializationHelper.CanBeSerialized(ValidJson, ValidObject);
         }
     }
 }
