@@ -1,5 +1,4 @@
 ﻿using System;
-using Xunit;
 
 namespace Toggl.Ultrawave.Tests.Models
 {
