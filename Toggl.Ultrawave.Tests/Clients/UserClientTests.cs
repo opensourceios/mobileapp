@@ -2,7 +2,7 @@
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using NSubstitute;
-using Toggl.Ultrawave.Clients;
+using Toggl.Ultrawave.ApiClients;
 using Toggl.Ultrawave.Helpers;
 using Toggl.Ultrawave.Network;
 using Toggl.Ultrawave.Serialization;
@@ -25,7 +25,7 @@ namespace Toggl.Ultrawave.Tests.Clients
                 var endpoints = new UserEndpoints(ApiUrls.ForEnvironment(ApiEnvironment.Staging));
 
                 apiClient.Send(Arg.Any<Request>()).Returns(x => new Response("It lives", true, "text/plain", OK));
-                var userClient = new UserClient(endpoints, apiClient, serializer, Credentials.None);
+                var userClient = new UserApi(endpoints, apiClient, serializer, Credentials.None);
 
                 await userClient.Get(credentials);
 

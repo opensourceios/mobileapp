@@ -136,7 +136,7 @@ namespace Toggl.Foundation.Tests.MvvmCross.ViewModels
 
                 ViewModel.LoginCommand.Execute();
 
-                var actualClient = Ioc.Resolve<ITogglClient>();
+                var actualClient = Ioc.Resolve<ITogglApi>();
                 actualClient.Should().NotBe(oldClient);
             }
 

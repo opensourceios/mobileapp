@@ -6,7 +6,7 @@ namespace Toggl.Ultrawave.Tests.Integration.BaseTests
 {
     public abstract class EndpointTestBase
     {
-        protected async Task<(ITogglClient togglClient, Ultrawave.User user)> SetupTestUser()
+        protected async Task<(ITogglApi togglClient, Ultrawave.User user)> SetupTestUser()
         {
             var credentials = await User.Create();
             var togglClient = TogglClientWith(credentials);
@@ -15,7 +15,7 @@ namespace Toggl.Ultrawave.Tests.Integration.BaseTests
             return (togglClient, user);
         }
 
-        protected ITogglClient TogglClientWith(Credentials credentials)
-            => new TogglClient(ApiEnvironment.Staging, credentials);
+        protected ITogglApi TogglClientWith(Credentials credentials)
+            => new TogglApi(ApiEnvironment.Staging, credentials);
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using Toggl.Multivac;
+using Toggl.Ultrawave.Exceptions;
 using Toggl.Ultrawave.Network;
 using Toggl.Ultrawave.Serialization;
-using Toggl.Multivac;
-using System.Reactive.Linq;
-using Toggl.Ultrawave.Exceptions;
-using System.Threading.Tasks;
 
-namespace Toggl.Ultrawave.Clients
+namespace Toggl.Ultrawave.ApiClients
 {
     internal abstract class BaseClient
     {

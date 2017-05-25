@@ -11,10 +11,10 @@ namespace Toggl.Ultrawave.Tests.Integration.BaseTests
 {
     public abstract class AuthenticatedEndpointBaseTests<T> : EndpointTestBase
     {
-        protected abstract IObservable<T> CallEndpointWith(ITogglClient togglClient);
+        protected abstract IObservable<T> CallEndpointWith(ITogglApi togglApi);
 
-        protected Func<Task> CallingEndpointWith(ITogglClient togglClient)
-            => async () => await CallEndpointWith(togglClient);
+        protected Func<Task> CallingEndpointWith(ITogglApi togglApi)
+            => async () => await CallEndpointWith(togglApi);
 
         [Fact]
         public async Task WorksWithPassword()
